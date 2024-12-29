@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+
+
+{% block body %}
+
+<div class="container my-5">
+
+    <h2 class="fs-2 text-muted">Insert Note</h2>
+    <form method="post">
+        <div class="mb-3">
+        <label for="title" class="form-label">Note Title</label>
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+        {# <div id="Error" class="form-text text-danger">We'll never share your email with anyone else.</div> #}  
+        </div>
+        <div class="mb-3">
+        <label for="description" class="form-label">Note Description</label>
+        <input type="text" class="form-control" id="description" name="description">
+        </div>
+        
+        <button type="submit" class="btn btn-primary ">Submit</button>
+    </form>
+      
+      {% if message %}
+      <div class="alert alert-success my-3" role="alert">
+        {{message}}
+      </div>  
+      {% endif %}
+        
+      
+    
+    <div >
+        {% for note in notes %}
+        <div class="p-3 my-3 bg-opacity-50 bg-light border-1 border-secondary shadow-sm rounded-2">
+            <p class='fs-5 text-body-emphasis'>{{note.title}}</p>
+            <p class="">{{note.description}}</p>
+            <a class="btn btn-danger" href="/delete/{{note._id}}">delete</a>
+            
+        </div>    
+        {% endfor %}
+
+    </div>    
+    
+
+</div>
+
+{% endblock body %}
+
